@@ -1,7 +1,7 @@
 package by.htp.les02.entity;
 
 public class User {
-	public static int people_counter;
+	
 	private String first_name;
 	private String login;
 	private String password;
@@ -9,7 +9,6 @@ public class User {
 	private String political_view;
 	
 	public User () {
-		System.out.println("We are already " + ++people_counter);
 	}
 	
 	public String getFirstName() {

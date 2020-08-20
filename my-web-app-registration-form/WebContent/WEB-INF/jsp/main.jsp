@@ -12,7 +12,7 @@
 		if (userX==null) {
 		userX=new User();
 		}
-		out.println("Congratulations, you are " +userX.people_counter+" registered");
+	
 	%>
 	<br></br>
 	<table>
