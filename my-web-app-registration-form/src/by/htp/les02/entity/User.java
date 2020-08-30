@@ -2,21 +2,21 @@ package by.htp.les02.entity;
 
 public class User {
 	
-	private String first_name;
+	private String firstName;
 	private String login;
 	private String password;
-	private String phone_number;
-	private String political_view;
+	private String phoneNumber;
+	private String politicalView;
 	
 	public User () {
 	}
 	
 	public String getFirstName() {
-		return first_name;
+		return firstName;
 	}
 	
 	public void setFirstName (String first_name) {
-		this.first_name=first_name;
+		this.firstName=first_name;
 	}
 	
 	public String getLogin() {
@@ -34,17 +34,17 @@ public class User {
 		this.password=password;
 	}
 	public String getPhoneNumber() {
-		return phone_number;
+		return phoneNumber;
 	}
 	
 	public void setPhoneNumder (String phone_number) {
-		this.phone_number=phone_number;
+		this.phoneNumber=phone_number;
 	}
 	public String getPoliticalView() {
-		return political_view;
+		return politicalView;
 	}
 	
 	public void setPoliticalView (String political_view) {
-		this.political_view=political_view;
+		this.politicalView=political_view;
 	}
 }
