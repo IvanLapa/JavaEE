@@ -1,11 +1,16 @@
 package _java._ee._02._servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import person.Person;
 
 /**
  * Servlet implementation class ServletForJspElement
@@ -37,12 +42,17 @@ public class ServletForJspElement extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html");
 	
-		SimpleBean s = new SimpleBean();
-		s.setName(request.getParameter("name"));
-		s.setSurname(request.getParameter("surname"));
-		Object a = s;
+		//SimpleBean s = new SimpleBean();
+		//s.setName(request.getParameter("name"));
+		//s.setSurname(request.getParameter("surname"));
+		//Object a = s;
 		
-		request.setAttribute("mybean", a);
+		//request.setAttribute("mybean", a);
+		
+		List<Person> list = new ArrayList<>();
+		list.add(new Person(30, "Ivan"));
+		list.add(new Person(28, "Dmitriy"));
+		
 		
 		if ("naming".equals(request.getParameter("command"))) request.getRequestDispatcher("jspusebean/usebean.jsp").forward(request, response);
 
