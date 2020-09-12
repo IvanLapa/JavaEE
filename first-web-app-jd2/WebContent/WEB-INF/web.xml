@@ -11,7 +11,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>TransferServlet</servlet-name>
-    <servlet-class>by.epamtc.home.controller.TransferServlet</servlet-class>
+    <servlet-class>by.http.webapp.controller.TransferServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>TransferServlet</servlet-name>
@@ -21,7 +21,7 @@
     <description></description>
     <display-name>Controller</display-name>
     <servlet-name>Controller</servlet-name>
-    <servlet-class>by.epamtc.home.controller.Controller</servlet-class>
+    <servlet-class>by.http.webapp.controller.Controller</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Controller</servlet-name>
