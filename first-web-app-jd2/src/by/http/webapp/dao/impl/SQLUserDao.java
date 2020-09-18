@@ -11,9 +11,9 @@ import by.http.webapp.entity.RegistrationUser;
 import by.http.webapp.entity.User;
 
 public class SQLUserDao implements UserDAO {
-	private static String URL = "jdbc:mysql://localhost/jd2-first-db?useSSl=false&serverTimezone=UTC";
-	private static String USERNAME = "root";
-	private static String PASSWORD = "12345";
+	private static final String URL = "jdbc:mysql://localhost/jd2-first-db?useSSl=false&serverTimezone=UTC";
+	private static final String USERNAME = "root";
+	private static final String PASSWORD = "root";
 	private static final String SELECT = "SELECT * FROM `jd2-first-db`.users\r\n" + "WHERE users.login =? AND users.password=?;";
 	
 	
@@ -91,7 +91,8 @@ public class SQLUserDao implements UserDAO {
 		}
 		
 	}
-
+	
+	@Override
 	public boolean userPresenceInSystem(String login, String password) throws DAOException {
 		
 		Connection con = null;

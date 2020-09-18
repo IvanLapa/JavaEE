@@ -5,18 +5,18 @@ import by.http.webapp.service.impl.RegistrationService;
 
 public class ServiceFactory {
 	private static final ServiceFactory instance = new ServiceFactory();
-	private final LoginService loginService = new LoginService();
-	private final RegistrationService registartionService = new RegistrationService();
+	private final Service loginService = new LoginService();
+	private final Service registartionService = new RegistrationService();
 	
 	public static ServiceFactory getInstance() {
 		return instance;
 	}
 	
-	public LoginService getLoginService() {
+	public Service getLoginService() {
 		return loginService;
 	}
 	
-	public RegistrationService getRegistrationService() {
+	public Service getRegistrationService() {
 		return registartionService;
 	}
 }

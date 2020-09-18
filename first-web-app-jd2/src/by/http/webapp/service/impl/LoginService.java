@@ -25,7 +25,6 @@ public class LoginService implements Service{
 				sqlUserDAO.signIn(login, password);
 				response.setContentType("text/html");
 				response.getWriter().write("<h1>Succsesfull logination, hello!!</h1>");
-				
 			} else {
 				request.getRequestDispatcher("WEB-INF/jsp/registration.jsp").forward(request, response);
 			}
@@ -33,5 +32,4 @@ public class LoginService implements Service{
 			throw new ServiceException(e);
 		}
 	}
-
 }

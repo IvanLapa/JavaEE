@@ -12,8 +12,8 @@ public class TransferServlet extends HttpServlet {
 	private static final String COMMAND_NAME = "command";   
 	private static final String LOGIN = "login";  
 	private static final String REGISTRATION = "registration"; 
-	private static final String LOGIN_PAGE = "WEB-INF/jsp/login.jsp";
-	private static final String REGISTRATION_PAGE = "WEB-INF/jsp/registration.jsp";
+	private static final String LOGIN_PAGE = "WEB-INF/login.jsp";
+	private static final String REGISTRATION_PAGE = "WEB-INF/registration.jsp";
        
     public TransferServlet() {
         super();
