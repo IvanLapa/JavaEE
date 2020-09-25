@@ -8,7 +8,7 @@ import by.http.newsmanagement.exception.DaoException;
 public interface NewsDao {
 
 	void createNews(News news) throws DaoException;
-	void update (News news) throws DaoException;
+	void updateNews (News news) throws DaoException;
 	void deleteNews(int id) throws DaoException;
 	
 	News byId (int id) throws DaoException;

@@ -41,7 +41,7 @@ public class SQLNews implements NewsDao{
 	}
 
 	@Override
-	public void update(News news) throws DaoException {
+	public void updateNews(News news) throws DaoException {
 		// TODO Auto-generated method stub
 		
 	}
