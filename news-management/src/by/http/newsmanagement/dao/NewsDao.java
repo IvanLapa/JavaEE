@@ -11,6 +11,6 @@ public interface NewsDao {
 	void updateNews (News news) throws DaoException;
 	void deleteNews(int id) throws DaoException;
 	
-	News byId (int id) throws DaoException;
+	News selectNewsById (int id) throws DaoException;
 	List<News> all () throws DaoException;	
 }
