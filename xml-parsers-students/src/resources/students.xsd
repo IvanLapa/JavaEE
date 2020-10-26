@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+
+  xmlns="http://www.w3.org/2001/XMLSchema" 
+  
+  targetNamespace="http://www.example.com/student"
+  xmlns:tns="http://www.example.com/student">
+
+	<element name="students">
+		
+       <complexType>
+			<sequence>
+				<element name="student" type="tns:StudentType" minOccurs="1" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+     </element>
+
+	<complexType name="StudentType">
+		<sequence>
+			<element name="name" type="string" />
+			<element name="telephone" type="string" />
+			<element name="address" type="tns:addressType" minOccurs="1"
+					maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="login" type="string" use="required" />
+	</complexType>
+	
+	<complexType name="addressType">
+		<sequence>
+			<element name="country" type="string" />
+			<element name="city" type="string" />
+			<element name="street" type="string" />
+		</sequence>
+	</complexType>
+
+</schema>
