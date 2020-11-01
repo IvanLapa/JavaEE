@@ -17,7 +17,7 @@ import by.http.newsmanagement.exception.DaoException;
 
 public class SQLNews implements NewsDao{
 	
-	private final ConnectionPool pool = ConnectionPool.getInstance();
+	private final static ConnectionPool pool = ConnectionPool.getInstance();
 
 	private static final String CREATE_NEWS = "INSERT INTO news(id, title, brief, content, date) VALUES(?,?,?,?,?)";
 	private static final String DELETE_NEWS = "DELETE FROM news WHERE id = ?";
