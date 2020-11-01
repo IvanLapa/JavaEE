@@ -5,11 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import by.http.newsmanagement.dao.impl.SQLNews;
 import by.http.newsmanagement.dao.pool.ConnectionPool;
 import  by.http.newsmanagement.entity.News;
+import by.http.newsmanagement.exception.DaoException;
 
 public class Main {
 	public static void main(String[] args) throws SQLException {
+
 		ConnectionPool pool = new ConnectionPool();
 		
 		Connection con = pool.takeConnection();
@@ -17,7 +21,7 @@ public class Main {
 		String sql = "INSERT INTO news(id, title, brief, content, date) VALUES(?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 
-		News news = new News(1, "title1", "brief1", "content1", LocalDate.now());
+		News news = new News(2, "title2", "brief2", "content2", LocalDate.now());
 		
 		ps.setInt(1, news.getId());
 		ps.setString(2, news.getTitle());
@@ -31,7 +35,7 @@ public class Main {
 		con.close();
 		
 		pool.dispose();
-		System.out.println("end");
+	    System.out.println("change to completed");
 
 	}
 }

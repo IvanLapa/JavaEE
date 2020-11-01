@@ -24,7 +24,6 @@ public class ConnectionPool {
     private int poolSize;
 
     public ConnectionPool() throws ConnectionPoolException{
-        
         driverName = "com.mysql.cj.jdbc.Driver";
         url = "jdbc:mysql://127.0.0.1/news_management?useSSl=false&serverTimezone=UTC";
         user = "root";
@@ -43,7 +42,8 @@ public class ConnectionPool {
 
             for (int i = 0; i < poolSize; i++) {
                 Connection connection = DriverManager.getConnection(url, user, password);
-                PooledConnection pooledConnection = new ConnectionPool.PooledConnection(connection);
+                //connection.setTransactionIsolation(TRANSACTION_READ_UNCOMMITED);
+                PooledConnection pooledConnection = new PooledConnection(connection);
                 connectionQueue.add(pooledConnection);
             }
         } catch (ClassNotFoundException e) {
@@ -135,6 +135,13 @@ public class ConnectionPool {
     private void clearConnectionQueue() throws SQLException{
     	closeConnectionQueue(connectionQueue);
     	closeConnectionQueue(givenAwayConQueue);
+    	
+    	//BlockingQueue<Connection> temp = new ....;
+		
+		//temp.addAll(connectionQueue);
+		//connectionQueue.clear();
+		
+	    //closeConnectionQueue(temp);
 
     }
 	

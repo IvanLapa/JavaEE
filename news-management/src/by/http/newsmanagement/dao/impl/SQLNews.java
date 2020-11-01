@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import by.http.newsmanagement.dao.NewsDao;
@@ -19,12 +19,14 @@ public class SQLNews implements NewsDao{
 	
 	private final ConnectionPool pool = ConnectionPool.getInstance();
 
-	private static final String NEW_NEWS_CREATE_QUARY = "INSERT INTO news(id, title, brief, content, date) VALUES(?,?,?,?,?)";
-	private static final String DELETE_NEWS_QUARY = "DELETE FROM news WHERE id = ?";
-	private static final String UPDATE_NEWS_QUARY = "UPDATE news SET date = ? , section = ? , author = ? , \"\r\n" + 
+	private static final String CREATE_NEWS = "INSERT INTO news(id, title, brief, content, date) VALUES(?,?,?,?,?)";
+	private static final String DELETE_NEWS = "DELETE FROM news WHERE id = ?";
+	private static final String UPDATE_NEWS = "UPDATE news SET date = ? , section = ? , author = ? , \"\r\n" + 
 			"			 + \"brief = ? , content = ? \"\r\n" + 
 			"			 + \"WHERE id = ?\"";
-	private static final String SELECT_ALLNEWS = "SELECT * FROM news";
+	private static final String SELECT_ALL_NEWS = "SELECT * FROM news";
+	private static final String SELECT_NEWS_BY_ID = "SELECT * FROM news WHERE id = ?";
+	
 	
 	@Override
 	public void createNews(News news) throws DaoException {
@@ -32,8 +34,7 @@ public class SQLNews implements NewsDao{
 		PreparedStatement ps = null;
 		try {
 		con = pool.takeConnection();
-		
-		ps = con.prepareStatement (NEW_NEWS_CREATE_QUARY);
+		ps = con.prepareStatement (CREATE_NEWS);
 		
 		ps.setInt(1, news.getId());
 		ps.setString(2, news.getTitle());
@@ -56,9 +57,9 @@ public class SQLNews implements NewsDao{
 
 		try {
 		con = pool.takeConnection();
-		ps = con.prepareStatement(UPDATE_NEWS_QUARY);
+		ps = con.prepareStatement(UPDATE_NEWS);
 		
-		//ps.setDate(1, Date.valueOf(news.getDate()));
+		ps.setDate(1, Date.valueOf(news.getDate()));
 		ps.setString(2, news.getTitle());
 		ps.setString(3, news.getBrief());
 		ps.setString(4, news.getContent());
@@ -79,7 +80,7 @@ public class SQLNews implements NewsDao{
 
 		try {
 			con = pool.takeConnection();
-			ps = con.prepareStatement(DELETE_NEWS_QUARY);
+			ps = con.prepareStatement(DELETE_NEWS);
 
 			ps.setInt(1, id);
 			ps.executeUpdate();
@@ -101,14 +102,12 @@ public class SQLNews implements NewsDao{
 		News newspaper = new News();;
 		
 		LocalDate date = null;
-		String section = null;
-		String author = null;
 		String brief = null;
 		String content = null;
 		
 		try {
 		con = pool.takeConnection();
-		ps = con.prepareStatement(SQL_SELECT_BY_ID);
+		ps = con.prepareStatement(SELECT_NEWS_BY_ID);
 		
 		ps.setInt(1, id);
 		rs = ps.executeQuery();
@@ -117,15 +116,11 @@ public class SQLNews implements NewsDao{
 		
 			id = rs.getInt(1);
 			date = rs.getDate("date").toLocalDate();
-			section = rs.getString(3);
-			author = rs.getString(4);
 			brief = rs.getString(5);
 			content = rs.getString(6);
 			
 			newspaper.setId(id);
 			newspaper.setDate(date);
-			newspaper.setSection(section);
-			newspaper.setAuthor(author);
 			newspaper.setBrief(brief);;
 			newspaper.setContent(content);
 		
@@ -144,18 +139,15 @@ public class SQLNews implements NewsDao{
 		
 		return newspaper;
 	}
-	}
 
 	@Override
-	public List<News> all() throws DaoException {
+	public List<News> allNews() throws DaoException {
 		Connection con = null;
 		Statement st = null;
 		ResultSet rs = null;
 		
 		int id = 0;
 		LocalDate date = null;
-		String section = null;
-		String author = null;
 		String brief = null;
 		String content = null;
 		
@@ -164,7 +156,7 @@ public class SQLNews implements NewsDao{
 		try {
 			con = pool.takeConnection();
 			st = con.createStatement();
-			rs = st.executeQuery(SELECT_ALLNEWS);
+			rs = st.executeQuery(SELECT_ALL_NEWS);
 			
 			
 			
@@ -174,15 +166,11 @@ public class SQLNews implements NewsDao{
 				
 				id = rs.getInt(1);
 				date = rs.getDate("date").toLocalDate();
-				section = rs.getString(3);
-				author = rs.getString(4);
 				brief = rs.getString(5);
 				content = rs.getString(6);
 				
 				news.setId(id);
 				news.setDate(date);
-				news.setSection(section);
-				news.setAuthor(author);
 				news.setBrief(brief);;
 				news.setContent(content);
 				

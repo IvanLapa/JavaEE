@@ -20,35 +20,35 @@ public class StAxEventExample {
 
 	public static void main(String[] args) throws FileNotFoundException,
 			XMLStreamException {
-		List<Student> menu = new ArrayList<Student>();
-		Student food = null;
+		List<Student> students = new ArrayList<Student>();
+		Student student = null;
 		XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
 
 		XMLEventReader xmlEventReader = xmlInputFactory
-				.createXMLEventReader(new FileInputStream("menu.xml"));
+				.createXMLEventReader(new FileInputStream("src/resources/students.xml"));
 		while (xmlEventReader.hasNext()) {
 			XMLEvent xmlEvent = xmlEventReader.nextEvent();
 			if (xmlEvent.isStartElement()) {
 				StartElement startElement = xmlEvent.asStartElement();
-				if (startElement.getName().getLocalPart().equals("food")) {
-					food = new Student();
+				if (startElement.getName().getLocalPart().equals("student")) {
+					student = new Student();
 					Attribute idAttr = startElement
-							.getAttributeByName(new QName("id"));
+							.getAttributeByName(new QName("login"));
 					if (idAttr != null) {
-						food.setId(Integer.parseInt(idAttr.getValue()));
+						student.setLogin(idAttr.getValue());
 					}
 				}
 			}
 			else if (xmlEvent.isEndElement()){
 				EndElement endElement = xmlEvent.asEndElement();
-				if (endElement.getName().getLocalPart().equals("food")) {
-					menu.add(food);
+				if (endElement.getName().getLocalPart().equals("student")) {
+					students.add(student);
 				}
 			}
 		}
 		
-		for (Student f : menu) {
-			System.out.println(f.getId());
+		for (Student s : students) {
+			System.out.println(s.getLogin());
 		}
 	}
 }

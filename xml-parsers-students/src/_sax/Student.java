@@ -53,5 +53,6 @@ public class Student {
 
 	public void setStreet(String street) {
 		this.street = street;
-	}
+	}		
 }
+

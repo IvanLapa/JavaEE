@@ -11,7 +11,7 @@ import javax.xml.stream.XMLStreamReader;
 public class StAxFilterExample {
 
 	public static void main(String[] args) throws XMLStreamException, FileNotFoundException {
-		FileInputStream fis = new FileInputStream("menu.xml");
+		FileInputStream fis = new FileInputStream("src/resources/students.xml");
 
 		 XMLInputFactory xmlif = null;
 
